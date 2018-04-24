@@ -1,0 +1,103 @@
+#############################################
+#	COMPSCI 105 S2 C, 2016                    #
+#	Assignment 1 Question 1                   #
+#                                           #
+#	@author    Sheen Khar and skha716         #
+#	@version	05/09/16                        #
+#############################################
+
+from PhoneBook import PhoneBook
+
+def display_intro():
+    UPI = "skha716"
+    message = "-"*2 + " A Phone Book Management Program by " + UPI + " "+ "-"*2
+    print(message)
+
+# This function obtains a valid user input menu option.
+def get_user_input(start,end):
+    ## IMPLEMENT THIS METHOD
+
+    lines = "-" * 48
+   
+    try:
+        user_input = int(input("Enter your choice: "))
+        if user_input < 1 or user_input > 6:
+            raise ValueError
+        else:
+            return user_input
+    except:
+        while True:
+            print("invalid menu option")
+            user_input = input("Please try again: ")
+            try:
+                user_input = int(user_input)
+                if user_input < 1 or user_input > 6:
+                    raise ValueError
+                else:
+                    return user_input
+                    break
+            except:
+                continue
+
+        print(lines)    
+        return str(user_input)
+
+###########################################################################
+# The implementation of the following functions have already been given.  #
+# Please DO NOT MODIFY the content of the functions BELOW, as they are    #                 
+# using/calling by other functions. Please rename the program and update  #
+# the above constant value in the introduction message with your own UPI. #
+###########################################################################
+
+def display_menu():
+    print("1. Look up a contact")
+    print("2. Add a new contact")
+    print("3. Change an existing contact")
+    print("4. Delete a contact")
+    print("5. Display all contacts")
+    print("6. Quit the program")
+
+def display_separator():
+    lines = "-" * 48
+    print(lines)
+
+def menu(contacts):
+    display_menu()
+    display_separator()
+    option = get_user_input(1,6)
+    while option != 6:
+        if option == 1:
+            display_separator()
+            contacts.search_a_record()
+        elif option == 2:
+            display_separator()
+            contacts.add_a_record()
+        elif option == 3:
+            display_separator()
+            contacts.update_a_record()
+        elif option == 4:
+            display_separator()
+            contacts.delete_a_record()
+        else:
+            display_separator()
+            print("List of Contacts:")
+            contacts.display_records()
+	    
+        display_separator()
+        display_menu()
+        display_separator()
+        option = get_user_input(1,6)
+    display_separator()
+    print("Thank you!")
+	
+def main():
+	contacts = PhoneBook()
+	contacts.load_records("contacts.txt")
+	display_separator()
+	display_intro()
+	display_separator()
+	menu(contacts)
+	display_separator()
+	contacts.save_records("contacts2.txt")
+
+main()
