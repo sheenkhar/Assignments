@@ -1,9 +1,9 @@
 #############################################
-#	COMPSCI 105 S2 C, 2016                    #
-#	Assignment 1 Question 1                   #
+#	COMPSCI 105 S2 C, 2016              #
+#	Assignment 1 Question 1             #
 #                                           #
-#	@author    Sheen Khar and skha716         #
-#	@version	05/09/16                        #
+#	@author    Sheen Khar and skha716   #
+#	@version	05/09/16            #
 #############################################
 
 from PhoneBook import PhoneBook
